@@ -44,7 +44,9 @@ function slt_strong_passwords( $errors ) {
 		if (
 			! user_can( $user_id, 'publish_posts' ) &&
 			! user_can( $user_id, 'upload_files' ) &&
-			! user_can( $user_id, 'edit_published_posts' )
+			! user_can( $user_id, 'edit_published_posts' ) &&
+			! user_can( $user_id, 'moderate_comments' ) &&
+			! user_can( $user_id, 'edit_comment' )
 		)
 			$enforce = false;
 	} else {
