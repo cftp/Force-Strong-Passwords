@@ -52,7 +52,9 @@ function slt_strong_passwords( $errors ) {
 		if ( in_array( $_POST["role"], array( "subscriber", "contributor" ) ) )
 			$enforce = false;
 	}
-	if ( $enforce && ! $errors->get_error_data("pass") && $_POST["pass1"] && slt_password_strength( $_POST["pass1"], $_POST["user_login"] ) != 4 )
+	$user_login = isset( $_POST[ 'user_login' ] ) ? $_POST[ 'user_login' ] : '';
+	$pass1 = isset( $_POST[ 'pass1' ] ) ? $_POST[ 'pass1' ] : '';
+	if ( $enforce && ! $errors->get_error_data("pass") && $pass1 && slt_password_strength( $pass1, $user_login ) != 4 )
 		$errors->add( 'pass', __( '<strong>ERROR</strong>: Please make the password a strong one.' ) );
 	return $errors;
 }
